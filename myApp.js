@@ -13,6 +13,8 @@ app.get('/', function (req, res) {
     // res.sendFile('index.html', { root: path.join(__dirname, './views') })
 })
 
+app.use('/public', express.static(__dirname + '/public'))
+
 
 
 
