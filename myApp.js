@@ -6,14 +6,33 @@ let bodyParser = require('body-parser')
 
 console.log('Hello World!')
 
+
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json());
 
-app.get('/name', (req, res) => {
-    let { first, last } = req.query
+app.use('/public', express.static(__dirname + '/public'))
+
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, './views', 'index.html'))
+    // res.sendFile('index.html', { root: path.join(__dirname, './views') })
+})
+
+app.post('/name', (req, res) => {
+    let { first, last } = req.body
     res.json({ name: `${first} ${last}` })
 })
+
+// app.get('/', (req, res) => {
+//     console.log(req.body)
+//     // let { first, last } = req.body
+//     // res.json({ name: `${first} ${last}` })
+// })
+
+// app.get('/name', (req, res) => {
+//     let { first, last } = req.query
+//     res.json({ name: `${first} ${last}` })
+// })
 
 // app.get('/:word/echo', function (req, res) {
 //     res.send({ echo: req.params.word })
@@ -40,8 +59,6 @@ app.get('/name', (req, res) => {
 //     res.sendFile(path.join(__dirname, './views', 'index.html'))
 //     // res.sendFile('index.html', { root: path.join(__dirname, './views') })
 // })
-
-// app.use('/public', express.static(__dirname + '/public'))
 
 // app.get('/json', function (req, res) {
 //     let string = 'Hello json'
