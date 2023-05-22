@@ -1,10 +1,16 @@
 let express = require('express')
 let app = express()
 let path = require('path')
+let bodyParser = require('body-parser')
+
 
 console.log('Hello World!')
 
-
+app.use(function (req, res, next) {
+    console.log('hit');
+    bodyParser.urlencoded({ extended: false })
+    next()
+})
 
 app.get('/name', (req, res) => {
     let { first, last } = req.query
