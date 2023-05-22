@@ -6,11 +6,9 @@ let bodyParser = require('body-parser')
 
 console.log('Hello World!')
 
-app.use(function (req, res, next) {
-    console.log('hit');
-    bodyParser.urlencoded({ extended: false })
-    next()
-})
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(bodyParser.json());
 
 app.get('/name', (req, res) => {
     let { first, last } = req.query
