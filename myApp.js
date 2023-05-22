@@ -1,5 +1,4 @@
 let express = require('express')
-require('dotenv').config()
 let path = require('path')
 let app = express()
 
