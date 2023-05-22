@@ -1,12 +1,18 @@
 let express = require('express')
-let path = require('path')
 let app = express()
+let path = require('path')
 
 console.log('Hello World!')
 
 // app.get('/', function (req, res) {
 //     res.send("Hello Express")
 // })
+
+app.use(function (req, res, next) {
+    console.log(`${req.method} ${req.path} - ${req.ip}`)
+    // console.log(req.method + " " + req.path + " - " + req.ip);
+    next()
+})
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, './views', 'index.html'))
