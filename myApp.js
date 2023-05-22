@@ -4,9 +4,16 @@ let path = require('path')
 
 console.log('Hello World!')
 
-app.get('/:word/echo', function (req, res) {
-    res.send({ echo: req.params.word })
+
+
+app.get('/name', (req, res) => {
+    let { first, last } = req.query
+    res.json({ name: `${first} ${last}` })
 })
+
+// app.get('/:word/echo', function (req, res) {
+//     res.send({ echo: req.params.word })
+// })
 
 // app.get('/', function (req, res) {
 //     res.send("Hello Express")
